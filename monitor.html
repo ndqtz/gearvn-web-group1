@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm - Màn Hình PC GVN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* (Giữ nguyên toàn bộ thẻ <style> y hệt như file pc-gvn.html ở trên để đồng bộ CSS) */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #F8F9FA; color: #221E1E; line-height: 1.5; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background-color: #E30019; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 12px; }
+        .logo-text { font-size: 24px; font-weight: 700; }
+        .main-nav { display: flex; gap: 30px; }
+        .main-nav a { font-size: 16px; font-weight: 400; transition: opacity 0.3s; }
+        .main-nav a:hover { opacity: 0.8; }
+        .main-nav a.active { font-weight: 700; border-bottom: 2px solid white; }
+        .btn-order { background-color: #221E1E; color: white; padding: 10px 24px; border-radius: 20px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-order:hover { background-color: #000; }
+        .banner-gray { height: 40px; background-color: #D9D9D9; width: 100%; }
+        .category-filters { display: flex; flex-wrap: wrap; gap: 16px; margin: 30px 0; justify-content: center; }
+        .filter-pill { background-color: #D9D9D9; padding: 12px 24px; border-radius: 30px; font-size: 16px; color: black; transition: 0.3s; }
+        .filter-pill:hover, .filter-pill.active { background-color: #221E1E; color: white; }
+        .section-header { background-color: #D9D9D9; display: inline-block; padding: 12px 30px; font-size: 18px; font-weight: 700; margin-bottom: 24px; border-radius: 4px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .product-img { width: 100%; height: 180px; background-color: #D9D9D9; object-fit: contain; padding: 10px; }
+        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #221E1E; }
+        .product-desc { font-size: 14px; color: #555; flex-grow: 1; margin-bottom: 20px; }
+        .product-bottom { display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-size: 16px; font-weight: 700; color: #E30019; }
+        .btn-add { width: 32px; height: 32px; background: #FAECEC; color: #E30019; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; transition: 0.3s; }
+        .btn-add:hover { background: #E30019; color: white; }
+        footer { background-color: #E30019; color: white; padding: 60px 0; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .footer-col h3 { font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+        .footer-col a { font-size: 16px; opacity: 0.9; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; text-decoration: underline; }
+        @media (max-width: 900px) { .header-content { flex-direction: column; gap: 16px; } .main-nav { flex-wrap: wrap; justify-content: center; } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .product-grid, .footer-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-box">
+                <span class="logo-text">PC GVN</span>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="pc-gvn.html" class="active">Sản phẩm</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="hethongcuahang.html">Cửa hàng</a>
+                <a href="lienhe.html">Liên hệ</a>
+            </nav>
+            <button class="btn-order">Đặt hàng</button>
+        </div>
+    </header>
+
+    <div class="banner-gray"></div>
+
+    <main class="container">
+        <!-- BỘ LỌC ĐÃ CHUYỂN ACTIVE SANG MÀN HÌNH -->
+        <div class="category-filters">
+            <a href="pc-gvn.html" class="filter-pill">PC GVN</a>
+            <a href="#" class="filter-pill">Main, GPU, VGA</a>
+            <a href="monitor.html" class="filter-pill active">Màn hình</a>
+            <a href="keyboards.html" class="filter-pill">Bàn phím</a>
+            <a href="#" class="filter-pill">Tai nghe</a>
+        </div>
+
+        <div class="section-header">Màn hình</div>
+
+        <div class="product-grid">
+            <article class="product-card">
+                <div class="product-img">Ảnh Màn Hình</div>
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình Asus TUF GAMING</h3>
+                    <p class="product-desc">Hiệu năng bứt phá, độ bền chuẩn quân đội. Chinh phục đỉnh cao eSports với tần số quét siêu mượt.</p>
+                    <div class="product-bottom">
+                        <span class="product-price">4.390.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-img">Ảnh Màn Hình</div>
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình cong AOC</h3>
+                    <p class="product-desc">Cỗ máy học tập và làm việc văn phòng chuẩn mực. Xử lý mượt mà, mức giá siêu tiết kiệm.</p>
+                    <div class="product-bottom">
+                        <span class="product-price">4.590.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER ĐỒNG BỘ NHƯ TRÊN -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Sản phẩm</h3>
+                <ul>
+                    <li><a href="pc-gvn.html">PC GVN</a></li>
+                    <li><a href="monitor.html">Màn hình</a></li>
+                    <li><a href="keyboards.html">Bàn phím</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Công ty</h3>
+                <ul>
+                    <li><a href="hethongcuahang.html">Cửa hàng</a></li>
+                    <li><a href="tin-tuc.html">Tin tức</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Hỗ trợ</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
