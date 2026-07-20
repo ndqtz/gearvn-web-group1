@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - PC GVN Intel i3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & CƠ BẢN === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #1E1E1E;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* === BỐ CỤC CHÍNH === */
+        .product-wrapper {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 40px;
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* === CỘT TRÁI: HÌNH ẢNH === */
+        .product-image-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #E5E5E5;
+        }
+
+        /* === CỘT PHẢI: THÔNG TIN CHI TIẾT === */
+        .product-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1E1E1E;
+            margin-bottom: 10px;
+        }
+
+        .review-link {
+            color: #1605FF;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .price-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 800;
+            color: #FF0B0B;
+        }
+
+        .discount-tag {
+            background-color: #FF0B0B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        /* === KHU VỰC KHUYẾN MÃI === */
+        .promo-box {
+            background-color: #FDF4F4;
+            border: 1px dashed #FF0B0B;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .promo-item {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #190101;
+        }
+
+        .promo-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .promo-link {
+            color: #1605FF;
+            text-decoration: underline;
+            font-size: 14px;
+            margin-left: 25px;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* === NÚT HÀNH ĐỘNG === */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-buy {
+            background-color: #FF0B0B;
+            color: white;
+        }
+
+        .btn-buy:hover { background-color: #D00000; }
+
+        .btn-installment {
+            background-color: #1605FF;
+            color: white;
+        }
+
+        .btn-installment:hover { background-color: #0F03B3; }
+
+        /* === BẢNG THÔNG SỐ KỸ THUẬT === */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .specs-table th, .specs-table td {
+            padding: 12px;
+            border-bottom: 1px solid #E5E5E5;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .specs-table th {
+            font-weight: 800;
+            color: #555;
+            width: 120px;
+        }
+
+        .specs-table td {
+            font-weight: 600;
+            color: #1E1E1E;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #777;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* === RESPONSIVE CHO ĐIỆN THOẠI === */
+        @media (max-width: 768px) {
+            .product-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article class="product-wrapper">
+            
+            <!-- Cột Trái: Ảnh Sản Phẩm -->
+            <div class="product-image-col">
+                <img src="https://placehold.co/400x400/f8f9fa/555?text=PC+GVN+Intel+i3" alt="PC GVN Intel i3-12100F" class="main-image">
+            </div>
+
+            <!-- Cột Phải: Thông tin chi tiết -->
+            <div class="product-details-col">
+                <h1 class="product-title">PC GVN Intel i3-12100F/ VGA RX 6500XT</h1>
+                <a href="#danh-gia" class="review-link">Xem đánh giá</a>
+
+                <div class="price-block">
+                    <span class="price">15.990.000₫</span>
+                    <span class="discount-tag">-8%</span>
+                </div>
+
+                <div class="promo-box">
+                    <div class="promo-item">
+                        🏷️ Giảm ngay 100.000đ khi mua sản phẩm cùng PC GVN.
+                        <a href="#" class="promo-link">Xem chi tiết (2 sản phẩm)</a>
+                    </div>
+                    <div class="promo-item">
+                        🏷️ Giảm ngay 200.000đ khi mua sản phẩm cùng PC GVN.
+                        <a href="#" class="promo-link">Xem chi tiết (5 sản phẩm)</a>
+                    </div>
+                    <div class="promo-item">
+                        🏷️ Giảm ngay 500.000đ khi mua màn hình kèm PC GVN.
+                        <a href="#" class="promo-link">Xem chi tiết (11 sản phẩm)</a>
+                    </div>
+                    <div class="promo-item">
+                        🎓 Dành cho HSSV: Giảm 2% (tối đa 500k) cho HSSV khi mua PC.
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-buy">Mua Ngay</button>
+                    <button class="btn btn-installment">Trả Góp 0%</button>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 18px; font-weight: 800;">Điểm nổi bật</h3>
+                    <table class="specs-table">
+                        <tr>
+                            <th>CPU</th>
+                            <td>Intel Core i3-12100F</td>
+                        </tr>
+                        <tr>
+                            <th>Mainboard</th>
+                            <td>H610M</td>
+                        </tr>
+                        <tr>
+                            <th>RAM</th>
+                            <td>16 GB</td>
+                        </tr>
+                        <tr>
+                            <th>SSD</th>
+                            <td>256GB</td>
+                        </tr>
+                        <tr>
+                            <th>VGA</th>
+                            <td>RX 6500XT</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p class="note">
+                    * Hỗ trợ trả góp MPOS (Thẻ tín dụng), HDSAISON.<br>
+                    * Hình ảnh PC chỉ mang tính chất minh họa.
+                </p>
+
+            </div>
+        </article>
+    </main>
+
+</body>
+</html>
