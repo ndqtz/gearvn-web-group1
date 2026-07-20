@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống cửa hàng - PC GVN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET & HEADER/FOOTER CHUẨN === */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #F8F9FA; color: #221E1E; line-height: 1.5; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        header { background-color: #E30019; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 12px; }
+        .logo-text { font-size: 24px; font-weight: 700; }
+        .main-nav { display: flex; gap: 30px; }
+        .main-nav a { font-size: 16px; font-weight: 400; transition: opacity 0.3s; }
+        .main-nav a:hover { opacity: 0.8; }
+        .main-nav a.active { font-weight: 700; border-bottom: 2px solid white; }
+        .btn-order { background-color: #221E1E; color: white; padding: 10px 24px; border-radius: 20px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-order:hover { background-color: #000; }
+
+        /* === THỐNG KÊ CỬA HÀNG === */
+        .stats-bar { background-color: #FFFFFF; border-bottom: 1px solid #E5E5E5; padding: 24px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 900; color: #E30019; margin-bottom: 4px; }
+        .stat-label { font-size: 13px; color: #555; text-transform: uppercase; font-weight: 600; }
+
+        /* === DANH SÁCH CỬA HÀNG === */
+        .stores-section { padding: 48px 0; }
+        .section-title { font-size: 24px; font-weight: 700; margin-bottom: 24px; color: #221E1E; border-left: 4px solid #E30019; padding-left: 12px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 30px; margin-bottom: 48px; }
+
+        /* === STORE CARD (LIGHT MODE) === */
+        .store-card { background-color: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .store-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: #E30019; }
+        .card-img-wrapper { position: relative; height: 180px; background-color: #D9D9D9; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .card-img-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%); }
+        .badge-hot { position: absolute; top: 12px; right: 12px; background-color: #E30019; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+        .card-city { position: absolute; bottom: 12px; left: 12px; color: white; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+        
+        .card-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
+        .store-name { font-size: 18px; font-weight: 700; color: #221E1E; }
+        .store-info { display: flex; flex-direction: column; gap: 10px; }
+        .info-row { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #555; }
+        .info-row svg { width: 18px; height: 18px; color: #E30019; flex-shrink: 0; }
+        
+        .card-actions { display: flex; gap: 10px; padding-top: 16px; border-top: 1px solid #E5E5E5; margin-top: auto; }
+        .btn { flex: 1; padding: 10px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; text-align: center; border: 1px solid transparent; }
+        .btn-primary { background-color: #FAECEC; color: #E30019; }
+        .btn-primary:hover { background-color: #E30019; color: white; }
+        .btn-secondary { background-color: #F8F9FA; color: #221E1E; border-color: #E5E5E5; }
+        .btn-secondary:hover { background-color: #E5E5E5; }
+
+        /* FOOTER */
+        footer { background-color: #E30019; color: white; padding: 60px 0; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .footer-col h3 { font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+        .footer-col a { font-size: 16px; opacity: 0.9; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; text-decoration: underline; }
+
+        @media (max-width: 992px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 576px) { .grid-container, .stats-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER ĐỒNG BỘ -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-box">
+                <span class="logo-text">PC GVN</span>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="pc-gvn.html">Sản phẩm</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="hethongcuahang.html" class="active">Cửa hàng</a>
+                <a href="lienhe.html">Liên hệ</a>
+            </nav>
+            <button class="btn-order">Đặt hàng</button>
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item"><span class="stat-value">12</span><span class="stat-label">Cửa hàng</span></div>
+            <div class="stat-item"><span class="stat-value">7</span><span class="stat-label">Tỉnh / Thành phố</span></div>
+            <div class="stat-item"><span class="stat-value">1900 636 382</span><span class="stat-label">Hotline hỗ trợ</span></div>
+            <div class="stat-item"><span class="stat-value">08:00 – 21:00</span><span class="stat-label">Giờ mở cửa</span></div>
+        </div>
+    </div>
+
+    <!-- MAIN STORES CONTENT -->
+    <main class="stores-section container">
+        
+        <h2 class="section-title">Khu vực Hà Nội</h2>
+        <div class="grid-container">
+            <article class="store-card">
+                <div class="card-img-wrapper">
+                    <img src="https://placehold.co/400x180/d9d9d9/555?text=Store+Cau+Giay" alt="PC GVN Cầu Giấy">
+                    <div class="card-img-overlay"></div>
+                    <span class="badge-hot">HOT</span>
+                    <span class="card-city">Hà Nội</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="store-name">PC GVN Cầu Giấy</h3>
+                    <div class="store-info">
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>216 Xuân Thủy, Cầu Giấy, Hà Nội</span>
+                        </div>
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>1900 636 382</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary">Chỉ đường</button>
+                        <button class="btn btn-secondary">Xem bản đồ</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="store-card">
+                <div class="card-img-wrapper">
+                    <img src="https://placehold.co/400x180/d9d9d9/555?text=Store+Thai+Ha" alt="PC GVN Thái Hà">
+                    <div class="card-img-overlay"></div>
+                    <span class="card-city">Hà Nội</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="store-name">PC GVN Thái Hà</h3>
+                    <div class="store-info">
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>99 Thái Hà, Đống Đa, Hà Nội</span>
+                        </div>
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>1900 636 382</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary">Chỉ đường</button>
+                        <button class="btn btn-secondary">Xem bản đồ</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <h2 class="section-title">Khu vực TP. Hồ Chí Minh</h2>
+        <div class="grid-container">
+            <article class="store-card">
+                <div class="card-img-wrapper">
+                    <img src="https://placehold.co/400x180/d9d9d9/555?text=Store+Thu+Duc" alt="PC GVN Thủ Đức">
+                    <div class="card-img-overlay"></div>
+                    <span class="card-city">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="store-name">PC GVN Thủ Đức</h3>
+                    <div class="store-info">
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>52 Võ Văn Ngân, Bình Thọ, TP. Thủ Đức</span>
+                        </div>
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>1900 636 382</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary">Chỉ đường</button>
+                        <button class="btn btn-secondary">Xem bản đồ</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="store-card">
+                <div class="card-img-wrapper">
+                    <img src="https://placehold.co/400x180/d9d9d9/555?text=Store+Quan+10" alt="PC GVN Quận 10">
+                    <div class="card-img-overlay"></div>
+                    <span class="badge-hot">HOT</span>
+                    <span class="card-city">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="store-name">PC GVN Quận 10</h3>
+                    <div class="store-info">
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>190 Tô Hiến Thành, Phường 15, Quận 10</span>
+                        </div>
+                        <div class="info-row">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>1900 636 382</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary">Chỉ đường</button>
+                        <button class="btn btn-secondary">Xem bản đồ</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- FOOTER ĐỒNG BỘ -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Sản phẩm</h3>
+                <ul>
+                    <li><a href="pc-gvn.html">PC GVN</a></li>
+                    <li><a href="monitor.html">Màn hình</a></li>
+                    <li><a href="keyboards.html">Bàn phím</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Công ty</h3>
+                <ul>
+                    <li><a href="hethongcuahang.html">Cửa hàng</a></li>
+                    <li><a href="tin-tuc.html">Tin tức</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Hỗ trợ</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
