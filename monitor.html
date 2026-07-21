@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Màn Hình - PC GVN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #F8F9FA; color: #221E1E; line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+        header { background-color: #E30019; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo-box { display: flex; align-items: center; gap: 12px; }
+        .logo-text { font-size: 24px; font-weight: 700; }
+        .main-nav { display: flex; gap: 30px; }
+        .main-nav a { font-size: 16px; font-weight: 400; transition: opacity 0.3s; }
+        .main-nav a:hover { opacity: 0.8; }
+        .main-nav a.active { font-weight: 700; border-bottom: 2px solid white; }
+        .btn-order { background-color: #221E1E; color: white; padding: 10px 24px; border-radius: 20px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        
+        .breadcrumb { display: flex; align-items: center; gap: 8px; padding: 16px 0; font-size: 13px; border-bottom: 1px solid #E5E5E5; color: #555; }
+        .breadcrumb a:hover { color: #E30019; }
+        .breadcrumb .active { color: #221E1E; font-weight: 700; }
+
+        .product-section { padding: 40px 0 60px 0; }
+        .section-title { font-size: 28px; font-weight: 800; margin-bottom: 30px; color: #221E1E; border-left: 5px solid #E30019; padding-left: 15px; text-transform: uppercase; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .product-card { background: white; border: 1px solid #E5E5E5; border-radius: 8px; padding: 15px; transition: 0.3s; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #E30019; }
+        .product-img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; }
+        .product-info { display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+        .product-desc { font-size: 13px; color: #555; margin-bottom: 15px; flex-grow: 1; }
+        .product-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .product-price { font-size: 16px; font-weight: 700; color: #E30019; }
+        .btn-add { background: #E30019; color: white; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .btn-add:hover { background: #cc0016; }
+
+        footer { background-color: #E30019; color: white; padding: 60px 0; margin-top: auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .footer-col h3 { font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+        .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+        .footer-col a { opacity: 0.9; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-box">
+                <img src="images/logo.png" alt="PC GVN" style="height: 40px;" onerror="this.style.display='none'">
+                <span class="logo-text">PC GVN</span>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Trang chủ</a>
+                <a href="pc-gvn.html" class="active">Sản phẩm</a>
+                <a href="tin-tuc.html">Tin tức</a>
+                <a href="hethongcuahang.html">Cửa hàng</a>
+                <a href="lienhe.html">Liên hệ</a>
+            </nav>
+            <button class="btn-order">Đặt hàng</button>
+        </div>
+    </header>
+
+    <div style="background-color: #FFFFFF;">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Trang chủ</a> › <a href="pc-gvn.html">Sản phẩm</a> › <span class="active">Màn hình máy tính</span>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container product-section">
+        <h2 class="section-title">Màn hình máy tính</h2>
+        <div class="category-filter">
+            <a href="pc-gvn.html" class="filter-pill active">Máy bộ PC</a>
+            <a href="monitor.html" class="filter-pill">Màn hình</a>
+            <a href="keyboards.html" class="filter-pill">Bàn phím</a>
+        </div>
+        
+        <div class="product-grid">
+            <article class="product-card">
+                <img src="images/products/monitor-1.jpg" alt="Màn hình Asus TUF" class="product-img" onerror="this.src='https://placehold.co/250x180/d9d9d9/555?text=Man+Hinh+1'">
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình Asus TUF GAMING 24inch</h3>
+                    <p class="product-desc">Hiệu năng bứt phá, độ bền chuẩn quân đội. Chinh phục đỉnh cao eSports với tần số quét 165Hz siêu mượt.</p>
+                    <div class="product-bottom">
+                        <span class="product-price">3.390.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="images/products/monitor-2.jpg" alt="Màn hình Acer" class="product-img" onerror="this.src='https://placehold.co/250x180/d9d9d9/555?text=Man+Hinh+2'">
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình Acer Nitro 27inch 2K</h3>
+                    <p class="product-desc">Độ phân giải 2K sắc nét, tấm nền IPS cho góc nhìn rộng. Lựa chọn tuyệt vời cho thiết kế và giải trí.</p>
+                    <div class="product-bottom">
+                        <span class="product-price">5.490.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="images/products/monitor-3.jpg" alt="Màn hình AOC" class="product-img" onerror="this.src='https://placehold.co/250x180/d9d9d9/555?text=Man+Hinh+3'">
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình cong AOC 24inch 144Hz</h3>
+                    <p class="product-desc">Thiết kế cong ôm sát góc nhìn, tạo cảm giác đắm chìm khi chiến game. Mức giá siêu tiết kiệm cho HSSV!</p>
+                    <div class="product-bottom">
+                        <span class="product-price">2.590.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="images/products/monitor-4.jpg" alt="Màn hình LG" class="product-img" onerror="this.src='https://placehold.co/250x180/d9d9d9/555?text=Man+Hinh+4'">
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình LG UltraGear 32inch 4K</h3>
+                    <p class="product-desc">Đỉnh cao hình ảnh với độ phân giải 4K, hỗ trợ HDR10 cho màu sắc chân thực, tần số quét 144Hz cực đã.</p>
+                    <div class="product-bottom">
+                        <span class="product-price">14.990.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <img src="images/products/monitor-5.jpg" alt="Màn hình Dell" class="product-img" onerror="this.src='https://placehold.co/250x180/d9d9d9/555?text=Man+Hinh+5'">
+                <div class="product-info">
+                    <h3 class="product-title">Màn hình Dell UltraSharp 27inch</h3>
+                    <p class="product-desc">Dòng sản phẩm chuyên dụng cho thiết kế đồ họa. Độ chuẩn màu sRGB 99%, thiết kế viền mỏng sang trọng.</p>
+                    <div class="product-bottom">
+                        <span class="product-price">9.290.000₫</span>
+                        <button class="btn-add">+</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Sản phẩm</h3>
+                <ul>
+                    <li><a href="pc-gvn.html">PC GVN</a></li>
+                    <li><a href="monitor.html">Màn hình</a></li>
+                    <li><a href="keyboards.html">Bàn phím</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Công ty</h3>
+                <ul>
+                    <li><a href="hethongcuahang.html">Cửa hàng</a></li>
+                    <li><a href="tin-tuc.html">Tin tức</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Hỗ trợ</h3>
+                <ul>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
